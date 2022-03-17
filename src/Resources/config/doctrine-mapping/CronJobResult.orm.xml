@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+    <entity repository-class="Shapecode\Bundle\CronBundle\Repository\CronJobResultRepository" name="Shapecode\Bundle\CronBundle\Entity\CronJobResult" table="cron_job_result">
+        <id name="id" type="integer" />
+        <field name="runAt" type="datetime" column="run_at"/>
+        <field name="runTime" type="float" column="run_time"/>
+        <field name="statusCode" type="integer" column="status_code"/>
+        <field name="output" type="text" column="output"/>
+        <field name="createdAt" type="datetime" column="created_at"/>
+        <field name="updatedAt" type="datetime" column="updated_at"/>
+        <many-to-one field="cronJob" target-entity="Shapecode\Bundle\CronBundle\Entity\CronJob" inversed-by="results" fetch="LAZY">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+            <join-columns>
+                <join-column name="cron_job_id" referenced-column-name="id" nullable="false"/>
+            </join-columns>
+        </many-to-one>
+    </entity>
+</doctrine-mapping>

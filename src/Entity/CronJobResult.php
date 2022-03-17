@@ -6,35 +6,23 @@ namespace Shapecode\Bundle\CronBundle\Entity;
 
 use DateTime;
 use DateTimeInterface;
-use Doctrine\ORM\Mapping as ORM;
 
 use function sprintf;
 
-/**
- * @ORM\Entity(repositoryClass="Shapecode\Bundle\CronBundle\Repository\CronJobResultRepository")
- */
 class CronJobResult extends AbstractEntity
 {
     public const SUCCEEDED = 'succeeded';
     public const FAILED    = 'failed';
     public const SKIPPED   = 'skipped';
 
-    /** @ORM\Column(type="datetime") */
     private DateTimeInterface $runAt;
 
-    /** @ORM\Column(type="float") */
     private float $runTime;
 
-    /** @ORM\Column(type="integer") */
     private int $statusCode;
 
-    /** @ORM\Column(type="text", nullable=true) */
     private ?string $output;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Shapecode\Bundle\CronBundle\Entity\CronJob", inversedBy="results", cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
-     */
     private CronJob $cronJob;
 
     public function __construct(

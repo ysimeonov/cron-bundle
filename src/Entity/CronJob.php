@@ -8,54 +8,33 @@ use Cron\CronExpression;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass="Shapecode\Bundle\CronBundle\Repository\CronJobRepository")
- */
 class CronJob extends AbstractEntity
 {
-    /** @ORM\Column(type="string") */
     private string $command;
 
-    /** @ORM\Column(type="string", nullable=true) */
     private ?string $arguments = null;
 
-    /** @ORM\Column(type="string", nullable=true) */
     private ?string $description = null;
 
-    /** @ORM\Column(type="integer", options={"unsigned": true, "default":0}) */
     private int $runningInstances = 0;
 
-    /** @ORM\Column(type="integer", options={"unsigned": true, "default":1}) */
     private int $maxInstances = 1;
 
-    /** @ORM\Column(type="integer", options={"unsigned": true, "default":1}) */
     private int $number = 1;
 
-    /** @ORM\Column(type="string") */
     private string $period;
 
-    /** @ORM\Column(type="datetime", nullable=true) */
     private ?DateTimeInterface $lastUse = null;
 
-    /** @ORM\Column(type="datetime") */
     private DateTimeInterface $nextRun;
 
     /**
-     * @ORM\OneToMany(
-     *     targetEntity="Shapecode\Bundle\CronBundle\Entity\CronJobResult",
-     *     mappedBy="cronJob",
-     *     cascade={"persist", "remove"},
-     *     orphanRemoval=true
-     * )
-     *
      * @var Collection<int, CronJobResult>
      */
     private Collection $results;
 
-    /** @ORM\Column(type="boolean", options={"default"=1}) */
-    private bool $enable = true;
+    protected $enable = true;
 
     public function __construct(
         string $command,

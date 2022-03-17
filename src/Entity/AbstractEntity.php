@@ -6,21 +6,16 @@ namespace Shapecode\Bundle\CronBundle\Entity;
 
 use DateTime;
 use DateTimeInterface;
-use Doctrine\ORM\Mapping as ORM;
 
 abstract class AbstractEntity
 {
     /**
-     * @ORM\Column(type="bigint", options={"unsigned"=true})
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var string|int|null
      */
     protected string|null $id = null;
 
-    /** @ORM\Column(type="datetime") */
     protected DateTimeInterface $createdAt;
 
-    /** @ORM\Column(type="datetime") */
     protected DateTimeInterface $updatedAt;
 
     public function __construct()
