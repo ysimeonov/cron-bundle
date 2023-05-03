@@ -16,6 +16,10 @@ use function assert;
 
 abstract class BaseCommand extends Command
 {
+    public const SUCCESS = 0;
+    public const FAILURE = 1;
+    public const INVALID = 2;
+
     private ManagerRegistry $registry;
 
     public function __construct(

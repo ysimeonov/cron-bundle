@@ -42,7 +42,7 @@ final class CronJobEditCommand extends BaseCommand
         if (count($jobs) === 0) {
             $io->error(sprintf('Couldn\'t find a job by the name of %s', $jobName));
 
-            return Command::FAILURE;
+            return static::FAILURE;
         }
 
         $enable = $input->getOption('enable') === 'y';
@@ -60,6 +60,6 @@ final class CronJobEditCommand extends BaseCommand
             $io->success('cron disabled');
         }
 
-        return Command::SUCCESS;
+        return static::SUCCESS;
     }
 }

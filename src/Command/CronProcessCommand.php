@@ -66,7 +66,7 @@ final class CronProcessCommand extends BaseCommand
         $this->getStopWatch()->start($watch);
 
         if ($job->getRunningInstances() > $job->getMaxInstances()) {
-            $statusCode = Command::INVALID;
+            $statusCode = static::INVALID;
         } else {
             try {
                 $application = $this->getApplication();
@@ -77,7 +77,7 @@ final class CronProcessCommand extends BaseCommand
 
                 $statusCode = $application->doRun($jobInput, $jobOutput);
             } catch (Throwable $ex) {
-                $statusCode = Command::FAILURE;
+                $statusCode = static::FAILURE;
                 $io->error(sprintf('Job execution failed with exception %s: %s', $ex::class, $ex->getMessage()));
             }
         }

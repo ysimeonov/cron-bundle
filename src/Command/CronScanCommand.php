@@ -127,7 +127,7 @@ final class CronScanCommand extends BaseCommand
 
         $em->flush();
 
-        return Command::SUCCESS;
+        return static::SUCCESS;
     }
 
     private function newJobFound(CronStyle $io, CronJobMetadata $metadata, bool $defaultDisabled, int $counter): void

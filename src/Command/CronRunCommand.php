@@ -110,7 +110,7 @@ final class CronRunCommand extends BaseCommand
             $style->info('No jobs were executed. See reasons below.');
         }
 
-        return Command::SUCCESS;
+        return static::SUCCESS;
     }
 
     /**

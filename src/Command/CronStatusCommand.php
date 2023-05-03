@@ -54,6 +54,6 @@ final class CronStatusCommand extends BaseCommand
         $header = ['ID', 'Command', 'Next Schedule', 'Last run', 'Enabled'];
         $io->table($header, $tableContent);
 
-        return Command::SUCCESS;
+        return static::SUCCESS;
     }
 }
